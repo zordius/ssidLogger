@@ -1,0 +1,13 @@
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Logo</title>
+  <rect transform="null" fill="#22aabb" stroke="#000000" stroke-width="0" x="0" y="0" width="320" height="160" id="bgu1"/>
+  <rect transform="null" fill="#ffffff" stroke="#000000" stroke-width="0" x="10" y="10" width="300" height="150" id="bgu2"/>
+  <rect transform="null" fill="#22aabb" stroke="#000000" stroke-width="0" x="10" y="160" width="300" height="150" id="bgd"/>
+  <text fill="#22aabb" stroke="#000000" stroke-width="0" x="160" y="138" id="ssid" font-size="120" font-family="Serif" text-anchor="middle" xml:space="preserve" font-weight="bold" font-style="italic">SSID</text>
+  <text transform="null" fill="#ffffff" stroke="#000000" stroke-width="0" x="158.5" y="245" id="svg_3" font-size="90" font-family="Serif" text-anchor="middle" xml:space="preserve" font-weight="bold" font-style="italic">Logger</text>
+  <rect transform="rotate(-5 160,100.00000000000004) " fill="#ffffff" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="10" y="90" width="300" height="20" id="baru" fill-opacity="0.5"/>
+  <rect transform="rotate(-5 160,224.9999999999998) " fill="#22aabb" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="10" y="220" width="300" height="10" id="bard" fill-opacity="0.5"/>
+ </g>
+</svg>
