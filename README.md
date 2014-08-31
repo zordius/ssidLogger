@@ -12,6 +12,12 @@ ssidLogger
 * File conversion
  * use xxxx API to resolve SSID/BSSID location
  * convert SSID/BSSID to gpx/kml files
+* Major UI
+ * no tabs / dropdown / menu , one page
+ * change log file position
+ * add comment in log
+ * file conversion
+ * start/stop recording
 
 THE APP IS NOT READY
 ====================
