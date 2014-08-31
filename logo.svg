@@ -4,7 +4,8 @@
   <title>Logo</title>
   <rect fill="#22aabb" x="0" y="0" width="320" height="160" id="bgu1"/>
   <rect fill="#eeeeee" x="10" y="10" width="300" height="150" id="bgu2"/>
-  <rect fill="#22aabb" x="10" y="160" width="300" height="150" id="bgd"/>
+  <rect fill="#eeeeee" x="0" y="160" width="320" height="160" id="bgd1"/>
+  <rect fill="#22aabb" x="10" y="160" width="300" height="150" id="bgd2"/>
   <text fill="#22aabb" x="160" y="138" id="ssid" font-size="120" font-family="Serif" text-anchor="middle" xml:space="preserve" font-weight="bold" font-style="italic">SSID</text>
   <text fill="#eeeeee" x="158.5" y="245" id="svg_3" font-size="90" font-family="Serif" text-anchor="middle" xml:space="preserve" font-weight="bold" font-style="italic">Logger</text>
   <rect transform="rotate(-5 160,100) " fill="#eeeeee" x="10" y="90" width="300" height="20" id="baru" fill-opacity="0.5"/>
