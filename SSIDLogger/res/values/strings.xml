@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SSIDLogger</string>
+    <string name="app_name">SSID Logger</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="logging">Logging</string>
     <string name="logfile">LogFile</string>
@@ -9,5 +9,8 @@
     <string name="duration">Duration</string>
     <string name="size">Size</string>
     <string name="freespace">FreeSpace</string>
+    <string name="not_logging">not logging</string>
+    <string name="comment">Comment</string>
+    <string name="write_comment_into_log_file_">Write comment into log file...</string>
 
 </resources>

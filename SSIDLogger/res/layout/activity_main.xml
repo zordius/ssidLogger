@@ -5,13 +5,16 @@
     android:padding="10dp"
     tools:context="${packageName}.${activityClass}" >
 
-    <Switch
+    <ToggleButton
         android:id="@+id/logSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="@string/logging"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentRight="true"
+        android:checked="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textOff="@string/not_logging"
+        android:textOn="@string/logging" />
 
     <EditText
         android:id="@+id/editFilename"
@@ -93,5 +96,26 @@
         android:layout_alignBaseline="@+id/textFree"
         android:layout_toRightOf="@+id/textFree"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText1"
+        style="@style/defaultMarginTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textSize"
+        android:ems="10"
+        android:hint="@string/write_comment_into_log_file_" />
+
+    <Button
+        android:id="@+id/btnComment"
+        style="@style/defaultMarginTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText1"
+        android:text="@string/comment" />
 
 </RelativeLayout>
