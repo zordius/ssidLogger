@@ -3,6 +3,8 @@
 
     <string name="app_name">SSIDLogger</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="logging">Logging</string>
+    <string name="logfile">LogFile</string>
+    <string name="please_input_a_valid_file_name">Please input a valid file name</string>
 
 </resources>
