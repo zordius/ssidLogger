@@ -1,0 +1,6 @@
+# generated files
+bin/
+gen/
+docs/
+*.class
+*.apk
