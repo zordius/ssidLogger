@@ -68,11 +68,30 @@
 
     <TextView
         android:id="@+id/textLSize"
-        style="@style/defaultMarginLeft"
+        style="@style/defaultMinWidth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textSize"
         android:layout_toRightOf="@+id/textSize"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textFree"
+        style="@style/defaultMarginLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textLSize"
+        android:layout_toRightOf="@+id/textLSize"
+        android:text="@string/freespace"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textLFree"
+        style="@style/defaultMinWidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textFree"
+        android:layout_toRightOf="@+id/textFree"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
