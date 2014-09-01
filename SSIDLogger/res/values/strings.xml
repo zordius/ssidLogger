@@ -6,5 +6,7 @@
     <string name="logging">Logging</string>
     <string name="logfile">LogFile</string>
     <string name="please_input_a_valid_file_name">Please input a valid file name</string>
+    <string name="duration">Duration</string>
+    <string name="size">Size</string>
 
 </resources>

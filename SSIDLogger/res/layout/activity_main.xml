@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context="${packageName}.${activityClass}" >
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/logSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,24 +14,65 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editFilename"
+        style="@style/defaultMarginTL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/switch1"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_below="@+id/logSwitch"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textLogfile"
         android:ems="10"
         android:hint="@string/please_input_a_valid_file_name"
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textLogfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText1"
-        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignBaseline="@+id/editFilename"
+        android:layout_alignBottom="@+id/editFilename"
         android:layout_alignParentLeft="true"
         android:text="@string/logfile"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textDuration"
+        style="@style/defaultMarginTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editFilename"
+        android:text="@string/duration"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textLTime"
+        style="@style/defaultMarginLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textDuration"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textDuration"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textSize"
+        style="@style/defaultMarginTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textDuration"
+        android:text="@string/size"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textLSize"
+        style="@style/defaultMarginLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSize"
+        android:layout_toRightOf="@+id/textSize"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

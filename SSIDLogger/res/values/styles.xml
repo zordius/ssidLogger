@@ -17,4 +17,17 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="defaultMarginTL">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="defaultMarginTop">
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="defaultMarginLeft">
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
 </resources>
