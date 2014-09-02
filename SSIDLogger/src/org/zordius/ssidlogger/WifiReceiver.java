@@ -40,14 +40,12 @@ public class WifiReceiver extends BroadcastReceiver {
 	}
 
 	public static void setAlarm(Context context) {
-		Log.d("alarm", "set");
 		readyAlarm(context);
 		alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
 				1000 * 30, pending);
 	}
 
 	public static void cancelAlarm(Context context) {
-		Log.d("alarm", "cancel");
 		readyAlarm(context);
 		alarm.cancel(pending);
 	}
@@ -69,7 +67,7 @@ public class WifiReceiver extends BroadcastReceiver {
 	}
 
 	public static void doScan(Context context) {
-		Log.d("wifi", "do scan");
+		log(context, "SCAN");
 		receiveWifi(context, true);
 		readyWifi(context);
 		if (wifi.isWifiEnabled()) {
@@ -123,13 +121,7 @@ public class WifiReceiver extends BroadcastReceiver {
 							.format(new Date()) + " " + text);
 			log.close();
 		} catch (Exception e) {
-			// TODO: error handling
-			Log.d("log", "log error..." + logFile);
-			Log.d("log:",
-					String.valueOf(System.currentTimeMillis())
-					+ " "
-					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
-							.format(new Date()) + " " + text);
+			Log.d("logerr", text);
 		}
 	}
 
@@ -142,9 +134,8 @@ public class WifiReceiver extends BroadcastReceiver {
 			readyWifi(context);
 			List<ScanResult> results = wifi.getScanResults();
 			for (ScanResult R : results) {
-				Log.d("wifi", R.BSSID + ':' + R.level);
+				log(context, "WIFI " + R.BSSID + " " + R.level + " " + R.SSID);
 			}
-			log(context, "test");
 			return;
 		}
 
