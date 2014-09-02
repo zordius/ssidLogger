@@ -109,6 +109,11 @@ public class WifiReceiver extends BroadcastReceiver {
 					+ File.separator + LOGFILE;
 		}
 	}
+	
+	public static String getLogFileName(Context context) {
+		readyLog(context);
+		return logFile;
+	}
 
 	@SuppressLint("SimpleDateFormat")
 	public static void log(Context context, String text) {

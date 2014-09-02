@@ -19,8 +19,9 @@ public class MainActivity extends Activity {
 	public void syncStatus() {
 		((ToggleButton) findViewById(R.id.logSwitch)).setChecked(WifiReceiver
 				.isEnabled(this));
-		((EditText) findViewById(R.id.editFilename)).setText("test",
-				TextView.BufferType.EDITABLE);
+		((EditText) findViewById(R.id.editFilename))
+				.setText(WifiReceiver.getLogFileName(this),
+						TextView.BufferType.EDITABLE);
 	}
 
 	public void onClickLog(View v) {
@@ -29,5 +30,11 @@ public class MainActivity extends Activity {
 
 	public void onClickScan(View v) {
 		WifiReceiver.doScan(this);
+	}
+
+	public void onClickComment(View v) {
+		EditText cmt = (EditText) findViewById(R.id.editComment);
+		WifiReceiver.log(this, cmt.getText().toString());
+		cmt.setText("", TextView.BufferType.EDITABLE);
 	}
 }
