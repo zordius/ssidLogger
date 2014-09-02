@@ -1,8 +1,6 @@
 package org.zordius.ssidlogger;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,5 +21,9 @@ public class MainActivity extends Activity {
 
 	public void onClickLog(View v) {
 		WifiReceiver.toggleScan(this, ((ToggleButton) v).isChecked());
+	}
+	
+	public void onClickScan(View v) {
+		WifiReceiver.doScan(this);
 	}
 }

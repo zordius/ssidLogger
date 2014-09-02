@@ -41,10 +41,6 @@
                 <action android:name="android.net.wifi.SCAN_RESULTS" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="org.zordius.ssidlogger.WifiReceiver"
-            android:process=":remote" >
-        </receiver>
     </application>
 
 </manifest>

@@ -12,5 +12,6 @@
     <string name="not_logging">not logging</string>
     <string name="comment">Comment</string>
     <string name="write_comment_into_log_file_">Write comment into log file...</string>
+    <string name="scan_now">Scan Now</string>
 
 </resources>

@@ -5,17 +5,31 @@
     android:padding="10dp"
     tools:context="${packageName}.${activityClass}" >
 
-    <ToggleButton
-        android:id="@+id/logSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:checked="false"
-        android:onClick="onClickLog"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textOff="@string/not_logging"
-        android:textOn="@string/logging" />
+    <LinearLayout
+        android:id="@+id/topButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/logSwitch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:checked="false"
+            android:onClick="onClickLog"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textOff="@string/not_logging"
+            android:textOn="@string/logging" />
+
+        <Button
+            android:id="@+id/btnScan"
+            style="@style/defaultMarginLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:onClick="onClickScan"
+            android:text="@string/scan_now" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editFilename"
@@ -23,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/logSwitch"
+        android:layout_below="@+id/topButtons"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/textLogfile"
         android:ems="10"
