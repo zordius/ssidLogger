@@ -1,8 +1,18 @@
 package org.zordius.ssidlogger;
 
+import java.io.FileWriter;
+import java.util.List;
+
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -12,16 +22,20 @@ import android.content.Context;
  * helper methods.
  */
 public class CoreIntentService extends IntentService {
-	// TODO: Rename actions, choose action names that describe tasks that this
-	// IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
 	private static final String ACTION_START = "org.zordius.ssidlogger.action.STARTLOG";
 	private static final String ACTION_STOP = "org.zordius.ssidlogger.action.STOPLOG";
 	private static final String ACTION_EDIT = "org.zordius.ssidlogger.action.EDITCFG";
 
-	// TODO: Rename parameters
 	private static final String EXTRA_CFGNAME = "org.zordius.ssidlogger.extra.CFGNAME";
 	private static final String EXTRA_CFGVAL = "org.zordius.ssidlogger.extra.CFGVAL";
 
+	private static final String CFG_LOGFILE = "logFile";
+
+	private WifiManager wifi = null;
+	private BroadcastReceiver wifiReceiver = null;
+	private String strLogFile = null;
+	private SharedPreferences settings = null;
+	
 	/**
 	 * Starts this service to perform action START.
 	 * 
@@ -44,12 +58,23 @@ public class CoreIntentService extends IntentService {
 		context.startService(intent);
 	}
 
+	public void writeLog(String str) {
+		try {
+			FileWriter logFile = new FileWriter(strLogFile, true);
+			logFile.write(str);
+			logFile.close();
+		} catch (Exception e) {
+			// TODO: error handling
+		}
+	}
+
 	/**
 	 * Starts this service to perform action SETTING.
 	 * 
 	 * @see IntentService
 	 */
-	public static void startActionEdit(Context context, String name, String value) {
+	public static void startActionEdit(Context context, String name,
+			String value) {
 		Intent intent = new Intent(context, CoreIntentService.class);
 		intent.setAction(ACTION_EDIT);
 		intent.putExtra(EXTRA_CFGNAME, name);
@@ -59,15 +84,27 @@ public class CoreIntentService extends IntentService {
 
 	public CoreIntentService() {
 		super("CoreIntentService");
+		Log.d("CORE", "service init....");
+
+	}
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		resolveLogFileName();
+		Log.d("CORE", "service created....");
 	}
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+		Log.d("CORE", "intent received....");
 		if (intent != null) {
 			final String action = intent.getAction();
 			if (ACTION_START.equals(action)) {
+				Log.d("CORE", "log start....");
 				handleActionStart();
 			} else if (ACTION_STOP.equals(action)) {
+				Log.d("CORE", "log stop....");
 				handleActionStop();
 			} else if (ACTION_EDIT.equals(action)) {
 				final String name = intent.getStringExtra(EXTRA_CFGNAME);
@@ -77,25 +114,23 @@ public class CoreIntentService extends IntentService {
 		}
 	}
 
-	/**
-	 * Handle action START
-	 */
+	private void resolveLogFileName() {
+		if (strLogFile == null) {
+			settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			strLogFile = settings.getString(CFG_LOGFILE, null);
+		}
+	}
+
 	private void handleActionStart() {
-		// TODO: Handle action START
-		throw new UnsupportedOperationException("Not yet implemented");
+		Log.d("CORE", "reg wifi...");
+		registerReceiver(wifiReceiver, new IntentFilter(
+				WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 	}
 
-	/**
-	 * Handle action STOP
-	 */
 	private void handleActionStop() {
-		// TODO: Handle action STOP
-		throw new UnsupportedOperationException("Not yet implemented");
+		unregisterReceiver(wifiReceiver);
 	}
 
-	/**
-	 * Handle action EDIT
-	 */
 	private void handleActionEdit(String name, String value) {
 		// TODO: Handle action STOP
 		throw new UnsupportedOperationException("Not yet implemented");

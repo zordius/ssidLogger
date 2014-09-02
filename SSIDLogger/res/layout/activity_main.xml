@@ -12,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:checked="false"
+        android:onClick="onClickLog"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textOff="@string/not_logging"
         android:textOn="@string/logging" />
