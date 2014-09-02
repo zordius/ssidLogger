@@ -51,9 +51,6 @@ public class WifiReceiver extends BroadcastReceiver {
 	}
 
 	public static boolean isEnabled(Context context) {
-		Log.d("wifi", String.valueOf(context.getPackageManager()
-				.getComponentEnabledSetting(
-						new ComponentName(context, WifiReceiver.class))));
 		return context.getPackageManager().getComponentEnabledSetting(
 				new ComponentName(context, WifiReceiver.class)) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
 	}
@@ -67,7 +64,7 @@ public class WifiReceiver extends BroadcastReceiver {
 	}
 
 	public static void doScan(Context context) {
-		log(context, "SCAN");
+		writeLog(context, "SCAN");
 		receiveWifi(context, true);
 		readyWifi(context);
 		if (wifi.isWifiEnabled()) {
@@ -109,14 +106,19 @@ public class WifiReceiver extends BroadcastReceiver {
 					+ File.separator + LOGFILE;
 		}
 	}
-	
+
 	public static String getLogFileName(Context context) {
 		readyLog(context);
 		return logFile;
 	}
 
 	@SuppressLint("SimpleDateFormat")
-	public static void log(Context context, String text) {
+	public static void writeLog(Context context, String text) {
+		// skip empty log text
+		if ((text == null) || (text.length() == 0)) {
+			return;
+		}
+
 		readyLog(context);
 		try {
 			FileWriter log = new FileWriter(logFile, true);
@@ -139,7 +141,8 @@ public class WifiReceiver extends BroadcastReceiver {
 			readyWifi(context);
 			List<ScanResult> results = wifi.getScanResults();
 			for (ScanResult R : results) {
-				log(context, "WIFI " + R.BSSID + " " + R.level + " " + R.SSID);
+				writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "
+						+ R.SSID);
 			}
 			return;
 		}

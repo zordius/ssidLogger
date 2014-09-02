@@ -2,7 +2,10 @@ package org.zordius.ssidlogger;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +17,21 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		syncStatus();
+		bindDone();
+	}
+
+	public void bindDone() {
+		((EditText) findViewById(R.id.editComment))
+				.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+					public boolean onEditorAction(TextView v, int actionId,
+							KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_SEND) {
+							doComment();
+							return true;
+						}
+						return false;
+					}
+				});
 	}
 
 	public void syncStatus() {
@@ -32,9 +50,9 @@ public class MainActivity extends Activity {
 		WifiReceiver.doScan(this);
 	}
 
-	public void onClickComment(View v) {
+	public void doComment() {
 		EditText cmt = (EditText) findViewById(R.id.editComment);
-		WifiReceiver.log(this, cmt.getText().toString());
+		WifiReceiver.writeLog(this, "COMMENT " + cmt.getText().toString());
 		cmt.setText("", TextView.BufferType.EDITABLE);
 	}
 }

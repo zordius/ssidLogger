@@ -31,6 +31,16 @@
             android:text="@string/scan_now" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textLogfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editFilename"
+        android:layout_alignBottom="@+id/editFilename"
+        android:layout_alignParentLeft="true"
+        android:text="@string/logfile"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <EditText
         android:id="@+id/editFilename"
         style="@style/defaultMarginTL"
@@ -45,42 +55,12 @@
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textLogfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editFilename"
-        android:layout_alignBottom="@+id/editFilename"
-        android:layout_alignParentLeft="true"
-        android:text="@string/logfile"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textDuration"
-        style="@style/defaultMarginTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editFilename"
-        android:text="@string/duration"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textLTime"
-        style="@style/defaultMarginLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textDuration"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/textDuration"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/textSize"
         style="@style/defaultMarginTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textDuration"
+        android:layout_below="@+id/editFilename"
         android:text="@string/size"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -90,25 +70,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textSize"
+        android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/textSize"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textFree"
-        style="@style/defaultMarginLeft"
+        style="@style/defaultMarginTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textLSize"
-        android:layout_toRightOf="@+id/textLSize"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textSize"
         android:text="@string/freespace"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textLFree"
-        style="@style/defaultMinWidth"
+        style="@style/defaultMarginLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textFree"
+        android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/textFree"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -119,19 +101,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textSize"
+        android:layout_below="@+id/textFree"
         android:ems="10"
-        android:hint="@string/write_comment_into_log_file_" />
-
-    <Button
-        android:id="@+id/btnComment"
-        style="@style/defaultMarginTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editComment"
-        android:onClick="onClickComment"
-        android:text="@string/comment" />
+        android:hint="@string/write_comment_into_log_file_"
+        android:imeOptions="actionSend"
+        android:singleLine="true" />
 
 </RelativeLayout>
