@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -31,11 +30,23 @@ public class CoreIntentService extends IntentService {
 
 	private static final String CFG_LOGFILE = "logFile";
 
-	private WifiManager wifi = null;
 	private BroadcastReceiver wifiReceiver = null;
 	private String strLogFile = null;
 	private SharedPreferences settings = null;
-	
+
+	/**
+	 * Starts this service to perform action START or STOP.
+	 * 
+	 * @see IntentService
+	 */
+	public static void startActionToggle(Context context, boolean enable) {
+		if (enable) {
+			CoreIntentService.startActionStart(context);
+		} else {
+			CoreIntentService.startActionStop(context);
+		}
+	}
+
 	/**
 	 * Starts this service to perform action START.
 	 * 
@@ -122,13 +133,11 @@ public class CoreIntentService extends IntentService {
 	}
 
 	private void handleActionStart() {
-		Log.d("CORE", "reg wifi...");
-		registerReceiver(wifiReceiver, new IntentFilter(
-				WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		Log.d("CORE", "start logging...");
 	}
 
 	private void handleActionStop() {
-		unregisterReceiver(wifiReceiver);
+		Log.d("CORE", "stop logging...");
 	}
 
 	private void handleActionEdit(String name, String value) {
