@@ -142,7 +142,7 @@ public class WifiReceiver extends BroadcastReceiver {
 			log.write(String.valueOf(System.currentTimeMillis())
 					+ " "
 					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
-							.format(new Date()) + " " + text);
+							.format(new Date()) + "\t" + text + "\n");
 			log.close();
 			return true;
 		} catch (Exception e) {
