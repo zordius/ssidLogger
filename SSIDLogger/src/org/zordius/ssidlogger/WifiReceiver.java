@@ -98,6 +98,20 @@ public class WifiReceiver extends BroadcastReceiver {
 		}
 	}
 
+	public static boolean setLogFile(Context context, String name) {
+		logFile = name;
+		if (writeLog(context, "SETFILE")) {
+			return setPref(context, PREF_LOGFILE, name);
+		}
+		logFile = null;
+		return false;
+	}
+
+	public static boolean setPref(Context context, String name, String value) {
+		readyPref(context);
+		return pref.edit().putString(name, value).commit();
+	}
+
 	public static void readyLog(Context context) {
 		if (logFile == null) {
 			readyPref(context);
@@ -111,14 +125,15 @@ public class WifiReceiver extends BroadcastReceiver {
 
 	public static String getLogFileName(Context context) {
 		readyLog(context);
+		Log.d("pref", logFile);
 		return logFile;
 	}
 
 	@SuppressLint("SimpleDateFormat")
-	public static void writeLog(Context context, String text) {
+	public static boolean writeLog(Context context, String text) {
 		// skip empty log text
 		if ((text == null) || (text.length() == 0)) {
-			return;
+			return false;
 		}
 
 		readyLog(context);
@@ -129,9 +144,12 @@ public class WifiReceiver extends BroadcastReceiver {
 					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
 							.format(new Date()) + " " + text);
 			log.close();
+			return true;
 		} catch (Exception e) {
 			Log.d("logerr", text);
 		}
+
+		return false;
 	}
 
 	@Override

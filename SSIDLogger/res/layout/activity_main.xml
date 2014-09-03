@@ -52,6 +52,7 @@
         android:layout_toRightOf="@+id/textLogfile"
         android:ems="10"
         android:hint="@string/please_input_a_valid_file_name"
+        android:imeOptions="actionDone"
         android:inputType="text"
         android:singleLine="true" />
 

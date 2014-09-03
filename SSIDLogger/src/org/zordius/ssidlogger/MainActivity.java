@@ -20,6 +20,22 @@ public class MainActivity extends Activity {
 	}
 
 	public void bindDone() {
+		// handle set logfile
+		((EditText) findViewById(R.id.editFilename))
+				.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+					public boolean onEditorAction(TextView v, int actionId,
+							KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_DONE) {
+							if (!WifiReceiver.setLogFile(v.getContext(),
+									((EditText) v).getText().toString())) {
+								syncStatus();
+							}
+						}
+						return false;
+					}
+				});
+
+		// handle comment
 		((EditText) findViewById(R.id.editComment))
 				.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 					public boolean onEditorAction(TextView v, int actionId,
