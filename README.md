@@ -6,18 +6,18 @@ ssidLogger
 **Features**
 
 * SSID logging
- * low battery usage
- * no network required
- * logging scanned Wi-Fi SSID/BSSID and timestamp
+ * low battery usage (todo)
+ * no network required (todo)
+ * logging scanned Wi-Fi SSID/BSSID and timestamp (DONE)
 * File conversion
- * use xxxx API to resolve SSID/BSSID location
- * convert SSID/BSSID to gpx/kml files
+ * use xxxx API to resolve SSID/BSSID location (todo)
+ * convert SSID/BSSID to gpx/kml files (todo)
 * Major UI
- * no tabs / dropdown / menu , one page
- * change log file position
- * add comment in log
- * file conversion
- * start/stop recording
+ * no tabs / dropdown / menu , one page (DONE)
+ * change log file position (DONE)
+ * add comment in log (DONE)
+ * file conversion (todo)
+ * start/stop recording (DONE)
 
 THE APP IS NOT READY
 ====================
