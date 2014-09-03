@@ -2,7 +2,6 @@ package org.zordius.ssidlogger;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;

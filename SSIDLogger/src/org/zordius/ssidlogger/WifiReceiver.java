@@ -23,6 +23,8 @@ public class WifiReceiver extends BroadcastReceiver {
 	public static final String PREFERENCES = "org.zordius.ssidlogger.preference";
 	public static final String LOGFILE = "ssidLogger.log";
 	public static final String PREF_LOGFILE = "logFile";
+	public static final String ACTION_UPDATE = "org.zordius.ssidlogger.action_update";
+
 	public static WifiManager wifi = null;
 	public static AlarmManager alarm = null;
 	public static PendingIntent pending = null;
@@ -144,6 +146,7 @@ public class WifiReceiver extends BroadcastReceiver {
 				writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "
 						+ R.SSID);
 			}
+			context.sendBroadcast(new Intent(ACTION_UPDATE));
 			return;
 		}
 
