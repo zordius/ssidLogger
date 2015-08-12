@@ -4,9 +4,11 @@
 # npm files
 node_modules/
 
+# local settings
+local.properties
+SSIDLogger/.idea/workspace.xml
+SSIDLogger/.idea/libraries
+
 # generated files
-bin/
-gen/
-docs/
-*.class
-*.apk
+SSIDLogger/.gradle/
+build/
