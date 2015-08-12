@@ -28,3 +28,4 @@ some API reference.... (should pick 1 free/unlimited solution)
 * http://orwelliantremors.blogspot.tw/2010/12/mobile-80211-parole-bracelet-for-man-in.html
 * http://coderrr.wordpress.com/2008/09/10/get-the-physical-location-of-wireless-router-from-its-mac-address-bssid/
 * https://developers.google.com/maps/documentation/business/geolocation/
+* this works: https://maps.googleapis.com/maps/api/browserlocation/json?browser=firefox&sensor=true&wifi=mac:78:cd:8e:a6:f4:c9|ss:-82
