@@ -30,3 +30,5 @@ some API reference.... (should pick 1 free/unlimited solution)
 * https://developers.google.com/maps/documentation/business/geolocation/
 * this works: https://maps.googleapis.com/maps/api/browserlocation/json?browser=firefox&sensor=true&wifi=mac:78:cd:8e:a6:f4:c9|ss:-82
   * ref: https://milo2012.wordpress.com/2012/02/23/geolocation-via-wireless-access-points/
+* https://wigle.net/search
+  * this limited 50 query per day and require account
