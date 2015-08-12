@@ -15,8 +15,13 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		syncStatus();
-		bindDone();
+		new Thread() {
+			@Override
+			public void run() {
+				syncStatus();
+				bindDone();
+			}
+		}.start();
 	}
 
 	public void bindDone() {
