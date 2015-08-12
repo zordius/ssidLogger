@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -129,7 +131,6 @@ public class WifiReceiver extends BroadcastReceiver {
 		return logFile;
 	}
 
-	@SuppressLint("SimpleDateFormat")
 	public static boolean writeLog(Context context, String text) {
 		// skip empty log text
 		if ((text == null) || (text.length() == 0)) {
@@ -141,7 +142,7 @@ public class WifiReceiver extends BroadcastReceiver {
 			FileWriter log = new FileWriter(logFile, true);
 			log.write(String.valueOf(System.currentTimeMillis())
 					+ " "
-					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z")
+					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z", Locale.US)
 							.format(new Date()) + "\t" + text + "\n");
 			log.close();
 			return true;
