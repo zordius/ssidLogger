@@ -6,22 +6,21 @@ ssidLogger
 **Features**
 
 * SSID logging
- * low battery usage (todo)
- * no network required (todo)
- * logging scanned Wi-Fi SSID/BSSID and timestamp (DONE)
+ * low battery usage
+ * no network required
+ * logging scanned Wi-Fi SSID/BSSID and timestamp
 * File conversion
  * use xxxx API to resolve SSID/BSSID location (todo)
  * convert SSID/BSSID to gpx/kml files (todo)
 * Major UI
- * no tabs / dropdown / menu , one page (DONE)
- * change log file position (DONE)
- * add comment in log (DONE)
+ * no tabs / dropdown / menu , one page
+ * change log file position
+ * add comment in log
  * file conversion (todo)
  * start/stop recording (DONE)
 
 THE APP IS NOT READY
 ====================
-
 
 some API reference.... (should pick 1 free/unlimited solution)
 * http://www.openbmap.org/api/openbmap_api.php5
