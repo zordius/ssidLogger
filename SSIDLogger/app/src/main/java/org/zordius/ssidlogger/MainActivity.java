@@ -60,6 +60,9 @@ public class MainActivity extends Activity {
 		((EditText) findViewById(R.id.editFilename))
 				.setText(WifiReceiver.getLogFileName(this),
 						TextView.BufferType.EDITABLE);
+
+		((TextView) findViewById(R.id.textLFree))
+				.setText(WifiReceiver.getFreeSize() + "MB");
 	}
 
 	public void onClickLog(View v) {

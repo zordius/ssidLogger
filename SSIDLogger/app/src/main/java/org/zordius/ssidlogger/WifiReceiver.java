@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -19,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 
 public class WifiReceiver extends BroadcastReceiver {
@@ -129,6 +129,12 @@ public class WifiReceiver extends BroadcastReceiver {
 		readyLog(context);
 		Log.d("pref", logFile);
 		return logFile;
+	}
+
+	public static int getFreeSize() {
+		StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
+		int sdAvailSize = stat.getAvailableBlocks() * stat.getBlockSize();
+		return sdAvailSize >> 20;
 	}
 
 	public static boolean writeLog(Context context, String text) {
