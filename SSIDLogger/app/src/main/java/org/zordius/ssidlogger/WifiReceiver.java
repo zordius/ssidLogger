@@ -32,14 +32,19 @@ public class WifiReceiver extends BroadcastReceiver {
 	public static PendingIntent pending = null;
 	public static SharedPreferences pref = null;
 	public static String logFile = null;
+    public static boolean activeScan = false;
 
 	public static void toggleScan(Context context, boolean enable) {
 		if (enable) {
 			doScan(context);
-			setAlarm(context);
+            if (activeScan) {
+                setAlarm(context);
+            }
 		} else {
 			receiveWifi(context, false);
-			cancelAlarm(context);
+            if (activeScan) {
+                cancelAlarm(context);
+            }
 		}
 	}
 

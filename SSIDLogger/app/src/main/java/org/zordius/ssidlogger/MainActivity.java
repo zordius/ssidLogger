@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 		((EditText) findViewById(R.id.editFilename))
 				.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 					public boolean onEditorAction(TextView v, int actionId,
-							KeyEvent event) {
+												  KeyEvent event) {
 						if (actionId == EditorInfo.IME_ACTION_DONE) {
 							if (!WifiReceiver.setLogFile(v.getContext(),
 									((EditText) v).getText().toString())) {
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 		((EditText) findViewById(R.id.editComment))
 				.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 					public boolean onEditorAction(TextView v, int actionId,
-							KeyEvent event) {
+												  KeyEvent event) {
 						if (actionId == EditorInfo.IME_ACTION_SEND) {
 							doComment();
 							return true;
@@ -66,7 +66,12 @@ public class MainActivity extends Activity {
 	}
 
 	public void onClickLog(View v) {
+		((ToggleButton) findViewById(R.id.activeSwitch)).setEnabled(!((ToggleButton) v).isChecked());
 		WifiReceiver.toggleScan(this, ((ToggleButton) v).isChecked());
+	}
+
+	public void onClickActive(View v) {
+		WifiReceiver.activeScan = !WifiReceiver.activeScan;
 	}
 
 	public void onClickScan(View v) {

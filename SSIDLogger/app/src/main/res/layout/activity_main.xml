@@ -14,19 +14,31 @@
             android:id="@+id/logSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:layout_weight=".3"
             android:checked="false"
             android:onClick="onClickLog"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textOff="@string/not_logging"
             android:textOn="@string/logging" />
 
+        <ToggleButton
+            android:id="@+id/activeSwitch"
+            style="@style/defaultMarginLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:checked="false"
+            android:onClick="onClickActive"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textOff="passive"
+            android:textOn="active" />
+
         <Button
             android:id="@+id/btnScan"
             style="@style/defaultMarginLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:layout_weight=".4"
             android:onClick="onClickScan"
             android:text="@string/scan_now" />
     </LinearLayout>
