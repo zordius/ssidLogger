@@ -34,8 +34,8 @@ First of all, you should be able to build an Android project and install this on
 * **Logging** Toggle to enable logging or disable logging.
 * **Scan Now** Button to do 1 time wifi scanning and write to log file.
 * **passive** Toggle to enable or disable a interval timer to active scan wifi. Enable this if you wanna higher frequency of wifi scan than OS default. You can not change this when logging is enabled.
-* **1 minutes** Toggle to choose active scan fequency from every 1 minutes or every 30 seconds. You can not change this when logging is enabled.
-* **LogFile** change the logfile name, default will be your sdcard_directory/ssidLogger.log
+* **1 minutes** Toggle to choose active scan fequency by every 1 minutes or every 30 seconds. You can not change this when logging is enabled.
+* **LogFile** change the logfile name, default will be your sdcard_directory/ssidLogger.log . You can not change this when logging is enabled.
 * **Size** display current logfile size
 * **FreeSpace** display current sdcard free space
 * **Comment** write one line of comment into log file
