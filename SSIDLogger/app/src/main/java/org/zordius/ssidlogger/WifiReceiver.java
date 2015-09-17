@@ -127,7 +127,7 @@ public class WifiReceiver extends BroadcastReceiver {
     }
 
     public static int getLogSize() {
-        return 0;
+        return (int) ((new File(logFile)).length() / 1024);
     }
 
     protected static void readyAlarm(Context context) {

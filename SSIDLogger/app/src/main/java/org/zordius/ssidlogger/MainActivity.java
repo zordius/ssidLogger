@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        WifiReceiver.init(this);
         new Thread() {
             @Override
             public void run() {
@@ -22,6 +23,12 @@ public class MainActivity extends Activity {
                 bindDone();
             }
         }.start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateFileStatus();
     }
 
     public void bindDone() {
@@ -55,8 +62,6 @@ public class MainActivity extends Activity {
     }
 
     public void syncStatus() {
-        WifiReceiver.init(this);
-
         ((ToggleButton) findViewById(R.id.logSwitch)).setChecked(WifiReceiver
                 .isEnabled(this));
         ((ToggleButton) findViewById(R.id.activeSwitch)).setChecked(WifiReceiver
@@ -67,15 +72,25 @@ public class MainActivity extends Activity {
         ((EditText) findViewById(R.id.editFilename))
                 .setText(WifiReceiver.logFile,
                         TextView.BufferType.EDITABLE);
+        setupLoggingUI();
+    }
 
+    public void setupLoggingUI() {
+        boolean isLogging = ((ToggleButton) findViewById(R.id.logSwitch)).isChecked();
+        ((ToggleButton) findViewById(R.id.activeSwitch)).setEnabled(!isLogging);
+        ((ToggleButton) findViewById(R.id.frequencySwitch)).setEnabled(!isLogging);
+        ((EditText) findViewById(R.id.editFilename)).setEnabled(!isLogging);
+    }
+
+    public void updateFileStatus() {
+        ((TextView) findViewById(R.id.textLSize))
+                .setText(WifiReceiver.getLogSize() + "KB");
         ((TextView) findViewById(R.id.textLFree))
                 .setText(WifiReceiver.getFreeSize() + "MB");
     }
 
     public void onClickLog(View v) {
-        ((ToggleButton) findViewById(R.id.activeSwitch)).setEnabled(!((ToggleButton) v).isChecked());
-        ((ToggleButton) findViewById(R.id.frequencySwitch)).setEnabled(!((ToggleButton) v).isChecked());
-        ((EditText) findViewById(R.id.editFilename)).setEnabled(!((ToggleButton) v).isChecked());
+        setupLoggingUI();
         WifiReceiver.toggleScan(this, ((ToggleButton) v).isChecked());
     }
 
