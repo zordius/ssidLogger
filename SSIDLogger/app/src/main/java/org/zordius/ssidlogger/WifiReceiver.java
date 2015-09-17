@@ -87,7 +87,7 @@ public class WifiReceiver extends BroadcastReceiver {
 
     public static void toggleLongScan(Context context) {
         frequency = 90 - frequency;
-        pref.edit().putInt(PREF_ACTIVE, frequency).commit();
+        pref.edit().putInt(PREF_SCANINTERVAL, frequency).commit();
     }
 
     public static boolean setLogFile(Context context, String name) {

@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
         ((ToggleButton) findViewById(R.id.activeSwitch)).setChecked(WifiReceiver
                 .activeScan);
         ((ToggleButton) findViewById(R.id.frequencySwitch)).setChecked(WifiReceiver
-                .frequency == 60);
+                .frequency == 30);
 
         ((EditText) findViewById(R.id.editFilename))
                 .setText(WifiReceiver.logFile,
