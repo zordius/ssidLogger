@@ -9,9 +9,6 @@ ssidLogger
  * low battery usage
  * no network required
  * logging scanned Wi-Fi SSID/BSSID and timestamp
-* File conversion
- * use xxxx API to resolve SSID/BSSID location (todo)
- * convert SSID/BSSID to gpx/kml files (todo)
 * Major UI
  * no tabs / dropdown / menu , all in one page
  * change log file name
