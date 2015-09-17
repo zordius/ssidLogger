@@ -24,6 +24,7 @@ First of all, you should be able to build an Android project and install this on
 
 <img src="screenshot.png" />
 
+* **Logging** Toggle to enable logging or disable logging.
 * **Scan Now** Button to do 1 time wifi scanning and write to log file.
 * **passive** Toggle to enable or disable a interval timer to active scan wifi. Enable this if you wanna higher frequency of wifi scan than OS default. You can not change this when logging is enabled.
 * **1 minutes** Toggle to choose active scan fequency from every 1 minutes or every 30 seconds. You can not change this when logging is enabled.
@@ -36,7 +37,6 @@ Generate GPX
 
 We provides a perl script to generate gpx from the log file.
 
-* **Logging** Toggle to enable logging or disable logging.
 some API reference.... (should pick 1 free/unlimited solution)
 * http://www.openbmap.org/api/openbmap_api.php5
 * http://orwelliantremors.blogspot.tw/2010/12/mobile-80211-parole-bracelet-for-man-in.html
