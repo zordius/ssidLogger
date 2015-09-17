@@ -31,6 +31,8 @@ while (<>) {
   my ($ts, $ymd, $his, $cst, $loc) = split(/ /, $time);
   my ($label, $bssid, $signal, $ssid) = split(/ /, $log);
 
+  next if ($label ne "WIFI");
+
   my $D = bssidLookup($bssid);
   if ($D) {
     print <<PRINTEND
