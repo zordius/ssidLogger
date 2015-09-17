@@ -45,8 +45,8 @@
             android:checked="false"
             android:onClick="onClickActive"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textOff="passive"
-            android:textOn="active" />
+            android:textOff="@string/passive"
+            android:textOn="@string/active" />
 
         <ToggleButton
             android:id="@+id/frequencySwitch"
@@ -57,8 +57,8 @@
             android:checked="false"
             android:onClick="onClickFequency"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textOff="1 minutes"
-            android:textOn="30 seconds" />
+            android:textOff="@string/oneMinutes"
+            android:textOn="@string/thirtySeconds" />
     </LinearLayout>
 
     <TextView
