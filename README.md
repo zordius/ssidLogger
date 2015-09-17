@@ -25,6 +25,11 @@ HOW TO USE
 
 First of all, you should be able to build an Android project and install this on your Android device.
 
+<img src="screenshot" />
+
+
+Generate GPX
+============
 
 
 some API reference.... (should pick 1 free/unlimited solution)
