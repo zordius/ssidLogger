@@ -16,6 +16,7 @@ ssidLogger
  * start/stop recording
  * active scanning wifi every 1 minutes or 30 seconds
  * passive scanning wifi with OS default interval
+ * remember previous settings
 
 **Why you need this**
 
