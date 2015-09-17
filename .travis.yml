@@ -6,6 +6,6 @@ android:
 sudo: false
 script:
   - cd SSIDLogger
-  - gradle assemble
+  - gradle tasks
   - ls -al build
   - ls -al build/apk
