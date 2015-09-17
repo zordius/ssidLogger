@@ -3,7 +3,9 @@ android:
   components:
     - build-tools-19.1.0
     - android-19
+sudo: false
 script:
+  - cd SSIDLogger
   - gradle assemble
-  - ls -al SSIDLogger/build 
-  - ls -al SSIDLogger/build/apk
+  - ls -al build
+  - ls -al build/apk
