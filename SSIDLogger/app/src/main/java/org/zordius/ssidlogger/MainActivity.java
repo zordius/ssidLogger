@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 
     public void doComment() {
         EditText cmt = (EditText) findViewById(R.id.editComment);
-        WifiReceiver.writeLog(this, "COMMENT " + cmt.getText().toString());
+        WifiReceiver.writeLog("COMMENT " + cmt.getText().toString());
         cmt.setText("", TextView.BufferType.EDITABLE);
     }
 }

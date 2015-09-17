@@ -71,7 +71,7 @@ public class WifiReceiver extends BroadcastReceiver {
     }
 
     public static void doScan(Context context) {
-        writeLog(context, "SCAN");
+        writeLog("SCAN");
         receiveWifi(context, true);
         if (wifi.isWifiEnabled()) {
             wifi.startScan();
@@ -92,7 +92,7 @@ public class WifiReceiver extends BroadcastReceiver {
 
     public static boolean setLogFile(Context context, String name) {
         logFile = name;
-        if (writeLog(context, "SETFILE")) {
+        if (writeLog("SETFILE")) {
             return pref.edit().putString(PREF_LOGFILE, name).commit();
         }
         logFile = null;
@@ -105,7 +105,7 @@ public class WifiReceiver extends BroadcastReceiver {
         return sdAvailSize >> 20;
     }
 
-    public static boolean writeLog(Context context, String text) {
+    public static boolean writeLog( String text) {
         // skip empty log text
         if ((text == null) || (text.length() == 0)) {
             return false;
@@ -124,6 +124,10 @@ public class WifiReceiver extends BroadcastReceiver {
         }
 
         return false;
+    }
+
+    public static int getLogSize() {
+        return 0;
     }
 
     protected static void readyAlarm(Context context) {
@@ -162,7 +166,7 @@ public class WifiReceiver extends BroadcastReceiver {
         if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
             List<ScanResult> results = wifi.getScanResults();
             for (ScanResult R : results) {
-                writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "
+                writeLog("WIFI " + R.BSSID + " " + R.level + " "
                         + R.SSID);
             }
             context.sendBroadcast(new Intent(ACTION_UPDATE));
