@@ -37,6 +37,7 @@ First of all, you should be able to build an Android project and install this on
 * **LogFile** change the logfile name, default will be your sdcard_directory/ssidLogger.log
 * **Size** display current logfile size
 * **FreeSpace** display current sdcard free space
+* **Comment** write one line of comment into log file
 
 Generate GPX
 ============

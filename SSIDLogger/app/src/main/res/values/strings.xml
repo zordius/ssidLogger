@@ -7,7 +7,7 @@
     <string name="logfile">LogFile</string>
     <string name="please_input_a_valid_file_name">Please input a valid file name</string>
     <string name="duration">Duration</string>
-    <string name="size">Size</string>
+    <string name="size">FileSize</string>
     <string name="freespace">FreeSpace</string>
     <string name="not_logging">start log</string>
     <string name="comment">Comment</string>
