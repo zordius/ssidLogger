@@ -5,3 +5,5 @@ android:
     - android-19
 script:
   - gradle assemble
+  - ls -al SSIDLogger/build 
+  - ls -al SSIDLogger/build/apk
