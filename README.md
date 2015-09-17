@@ -17,6 +17,12 @@ ssidLogger
  * active scanning wifi every 1 minutes or 30 seconds
  * passive scanning wifi with OS default interval
 
+**Why you need this**
+
+* **NO NETWORKS REQUIRED** - good when you travel without 3G/4G networks
+* **NO GPS** - good when you indoor
+* **LOW BATTERY USAGE** - when we do not use gps nor nerworks, the power consumption will be very low
+
 HOW TO USE
 ==========
 
