@@ -75,6 +75,7 @@ public class MainActivity extends Activity {
     public void onClickLog(View v) {
         ((ToggleButton) findViewById(R.id.activeSwitch)).setEnabled(!((ToggleButton) v).isChecked());
         ((ToggleButton) findViewById(R.id.frequencySwitch)).setEnabled(!((ToggleButton) v).isChecked());
+        ((EditText) findViewById(R.id.editFilename)).setEnabled(!((ToggleButton) v).isChecked());
         WifiReceiver.toggleScan(this, ((ToggleButton) v).isChecked());
     }
 
