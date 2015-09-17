@@ -1,13 +1,14 @@
 #!/usr/bin/perl
 use strict;
 
-use Storbale;
+use LWP::UserAgent;
+use Storable;
 
 my $bssid_cache = {};
 my $cacheFile = '/tmp/bssidCache';
 $| = 1;
 
-if (-f $cache) {
+if (-f $cacheFile) {
   $bssid_cache = retrieve($cacheFile);
 }
 
@@ -31,4 +32,8 @@ sub bssidLookup {
 
 sub getLatLonByBssid {
   my ($bssid) = @_;
+  my $ua = new LWP::UserAgent(
+    timeout => 10,
+    agent => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
+  );
 }
