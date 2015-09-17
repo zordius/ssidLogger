@@ -35,10 +35,13 @@ while (<>) {
 
   my $D = bssidLookup($bssid);
   if ($D) {
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime($time/1000);
+    my $T = sprintf("%04d-%02d-%02dT%02d:%02d:%02dZ", $year+1900, $mon+1, $yday, $hour, $min, $sec);
+
     print <<PRINTEND
    <trkpt lat="$D->{location}->{lat}" lon="$D->{location}->{lng}">
     <ele>10.000000</ele>
-    <time>${ymd}T${his}Z</time>
+    <time>$T</time>
     <desc>BSSID: $bssid , name: $ssid</desc>
    </trkpt>
 PRINTEND
