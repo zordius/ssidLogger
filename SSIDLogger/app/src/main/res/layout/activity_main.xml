@@ -14,33 +14,51 @@
             android:id="@+id/logSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3"
+            android:layout_weight=".5"
             android:checked="false"
             android:onClick="onClickLog"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textOff="@string/not_logging"
             android:textOn="@string/logging" />
 
-        <ToggleButton
-            android:id="@+id/activeSwitch"
+        <Button
+            android:id="@+id/btnScan"
             style="@style/defaultMarginLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3"
+            android:layout_weight=".5"
+            android:onClick="onClickScan"
+            android:text="@string/scan_now" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topButtons">
+
+        <ToggleButton
+            android:id="@+id/activeSwitch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
             android:checked="false"
             android:onClick="onClickActive"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textOff="passive"
             android:textOn="active" />
 
-        <Button
-            android:id="@+id/btnScan"
+        <ToggleButton
+            android:id="@+id/fequencySwitch"
             style="@style/defaultMarginLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4"
-            android:onClick="onClickScan"
-            android:text="@string/scan_now" />
+            android:layout_weight=".5"
+            android:checked="false"
+            android:onClick="onClickFequency"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textOff="1 minutes"
+            android:textOn="30 seconds" />
     </LinearLayout>
 
     <TextView
@@ -59,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/topButtons"
+        android:layout_below="@+id/secondButtons"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/textLogfile"
         android:ems="10"

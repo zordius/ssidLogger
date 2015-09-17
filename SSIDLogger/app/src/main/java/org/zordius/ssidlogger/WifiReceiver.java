@@ -33,6 +33,7 @@ public class WifiReceiver extends BroadcastReceiver {
 	public static SharedPreferences pref = null;
 	public static String logFile = null;
     public static boolean activeScan = false;
+    public static int fequency = 15;
 
 	public static void toggleScan(Context context, boolean enable) {
 		if (enable) {
@@ -51,7 +52,7 @@ public class WifiReceiver extends BroadcastReceiver {
 	public static void setAlarm(Context context) {
 		readyAlarm(context);
 		alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-				1000 * 30, pending);
+				1000 * fequency, pending);
 	}
 
 	public static void cancelAlarm(Context context) {

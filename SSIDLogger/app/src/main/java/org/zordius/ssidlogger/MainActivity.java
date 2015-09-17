@@ -67,11 +67,16 @@ public class MainActivity extends Activity {
 
 	public void onClickLog(View v) {
 		((ToggleButton) findViewById(R.id.activeSwitch)).setEnabled(!((ToggleButton) v).isChecked());
+		((ToggleButton) findViewById(R.id.fequencySwitch)).setEnabled(!((ToggleButton) v).isChecked());
 		WifiReceiver.toggleScan(this, ((ToggleButton) v).isChecked());
 	}
 
 	public void onClickActive(View v) {
 		WifiReceiver.activeScan = !WifiReceiver.activeScan;
+	}
+
+	public void onClickFequency(View v) {
+		WifiReceiver.fequency = 90 - WifiReceiver.fequency;
 	}
 
 	public void onClickScan(View v) {
