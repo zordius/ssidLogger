@@ -43,7 +43,11 @@ First of all, you should be able to build an Android project and install this on
 Generate GPX
 ============
 
-We provides a perl script to generate gpx from the log file.
+We provides a perl script to generate gpx from the log file:
+
+```
+cat ssidLogger.log | ./log2gpx.pl > ourput.gpx
+```
 
 some API reference.... (should pick 1 free/unlimited solution)
 * http://www.openbmap.org/api/openbmap_api.php5
