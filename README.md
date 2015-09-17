@@ -22,7 +22,7 @@ HOW TO USE
 
 First of all, you should be able to build an Android project and install this on your Android device.
 
-<img src="screenshot" />
+<img src="screenshot.png" />
 
 
 Generate GPX
