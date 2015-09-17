@@ -13,14 +13,19 @@ ssidLogger
  * use xxxx API to resolve SSID/BSSID location (todo)
  * convert SSID/BSSID to gpx/kml files (todo)
 * Major UI
- * no tabs / dropdown / menu , one page
- * change log file position
- * add comment in log
- * file conversion (todo)
- * start/stop recording (DONE)
+ * no tabs / dropdown / menu , all in one page
+ * change log file name
+ * add comment into log
+ * start/stop recording
+ * active scanning wifi every 1 minutes or 30 seconds
+ * passive scanning wifi with OS default interval
 
-THE APP IS NOT READY
-====================
+HOW TO USE
+==========
+
+First of all, you should be able to build an Android project and install this on your Android device.
+
+
 
 some API reference.... (should pick 1 free/unlimited solution)
 * http://www.openbmap.org/api/openbmap_api.php5

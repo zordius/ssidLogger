@@ -22,166 +22,178 @@ import android.os.StatFs;
 import android.util.Log;
 
 public class WifiReceiver extends BroadcastReceiver {
-	public static final String PREFERENCES = "org.zordius.ssidlogger.preference";
-	public static final String LOGFILE = "ssidLogger.log";
-	public static final String PREF_LOGFILE = "logFile";
-	public static final String ACTION_UPDATE = "org.zordius.ssidlogger.action_update";
+    public static final String PREFERENCES = "org.zordius.ssidlogger.preference";
+    public static final String LOGFILE = "ssidLogger.log";
+    public static final String PREF_LOGFILE = "logFile";
+    public static final String PREF_ACTIVE = "activeScan";
+    public static final String PREF_SCANINTERVAL = "scanInterval";
+    public static final String ACTION_UPDATE = "org.zordius.ssidlogger.action_update";
 
-	public static WifiManager wifi = null;
-	public static AlarmManager alarm = null;
-	public static PendingIntent pending = null;
-	public static SharedPreferences pref = null;
-	public static String logFile = null;
+    public static WifiManager wifi = null;
+    public static AlarmManager alarm = null;
+    public static PendingIntent pending = null;
+    public static SharedPreferences pref = null;
+    public static String logFile = null;
     public static boolean activeScan = false;
-    public static int fequency = 60;
+    public static int frequency = 60;
 
-	public static void toggleScan(Context context, boolean enable) {
-		if (enable) {
-			doScan(context);
+    public static boolean isEnabled(Context context) {
+        return context.getPackageManager().getComponentEnabledSetting(
+                new ComponentName(context, WifiReceiver.class)) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+    }
+
+    public static void toggleScan(Context context, boolean enable) {
+        if (enable) {
+            doScan(context);
             if (activeScan) {
                 setAlarm(context);
             }
-		} else {
-			receiveWifi(context, false);
+        } else {
+            receiveWifi(context, false);
             if (activeScan) {
                 cancelAlarm(context);
             }
-		}
-	}
+        }
+    }
 
-	public static void setAlarm(Context context) {
-		readyAlarm(context);
-		alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-				1000 * fequency, pending);
-	}
+    public static void doScan(Context context) {
+        writeLog(context, "SCAN");
+        receiveWifi(context, true);
+        readyWifi(context);
+        if (wifi.isWifiEnabled()) {
+            wifi.startScan();
+        } else {
+            wifi.setWifiEnabled(true);
+        }
+    }
 
-	public static void cancelAlarm(Context context) {
-		readyAlarm(context);
-		alarm.cancel(pending);
-	}
+    public static void toggleActive(Context context) {
+        activeScan = !activeScan;
+        setPref(context, PREF_ACTIVE, activeScan ? "Y" : "");
+    }
 
-	public static boolean isEnabled(Context context) {
-		return context.getPackageManager().getComponentEnabledSetting(
-				new ComponentName(context, WifiReceiver.class)) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
-	}
+    public static void toggleLongScan(Context context) {
+        frequency = 90 - frequency;
+        setPref(context, PREF_SCANINTERVAL, frequency + "");
+    }
 
-	public static void receiveWifi(Context context, boolean enable) {
-		context.getPackageManager().setComponentEnabledSetting(
-				new ComponentName(context, WifiReceiver.class),
-				enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-						: PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-				PackageManager.DONT_KILL_APP);
-	}
+    public static boolean setLogFile(Context context, String name) {
+        logFile = name;
+        if (writeLog(context, "SETFILE")) {
+            return setPref(context, PREF_LOGFILE, name);
+        }
+        logFile = null;
+        return false;
+    }
 
-	public static void doScan(Context context) {
-		writeLog(context, "SCAN");
-		receiveWifi(context, true);
-		readyWifi(context);
-		if (wifi.isWifiEnabled()) {
-			wifi.startScan();
-		} else {
-			wifi.setWifiEnabled(true);
-		}
-	}
+    public static String getLogFileName(Context context) {
+        readyLog(context);
+        Log.d("pref", logFile);
+        return logFile;
+    }
 
-	public static void readyAlarm(Context context) {
-		if (alarm == null) {
-			alarm = (AlarmManager) context
-					.getSystemService(Context.ALARM_SERVICE);
-			pending = PendingIntent.getBroadcast(context, 0, new Intent(
-					context, WifiReceiver.class), 0);
-		}
-	}
+    public static int getFreeSize() {
+        StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
+        int sdAvailSize = stat.getAvailableBlocks() * stat.getBlockSize();
+        return sdAvailSize >> 20;
+    }
 
-	public static void readyWifi(Context context) {
-		if (wifi == null) {
-			wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		}
-	}
+    public static boolean writeLog(Context context, String text) {
+        // skip empty log text
+        if ((text == null) || (text.length() == 0)) {
+            return false;
+        }
 
-	public static void readyPref(Context context) {
-		if (pref == null) {
-			pref = context.getSharedPreferences(PREFERENCES,
-					Context.MODE_PRIVATE);
-		}
-	}
+        readyLog(context);
+        try {
+            FileWriter log = new FileWriter(logFile, true);
+            log.write(String.valueOf(System.currentTimeMillis())
+                    + " "
+                    + new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z", Locale.US)
+                    .format(new Date()) + "\t" + text + "\n");
+            log.close();
+            return true;
+        } catch (Exception e) {
+            Log.d("logerr", text);
+        }
 
-	public static boolean setLogFile(Context context, String name) {
-		logFile = name;
-		if (writeLog(context, "SETFILE")) {
-			return setPref(context, PREF_LOGFILE, name);
-		}
-		logFile = null;
-		return false;
-	}
+        return false;
+    }
 
-	public static boolean setPref(Context context, String name, String value) {
-		readyPref(context);
-		return pref.edit().putString(name, value).commit();
-	}
+    protected static void readyAlarm(Context context) {
+        if (alarm == null) {
+            alarm = (AlarmManager) context
+                    .getSystemService(Context.ALARM_SERVICE);
+            pending = PendingIntent.getBroadcast(context, 0, new Intent(
+                    context, WifiReceiver.class), 0);
+        }
+    }
 
-	public static void readyLog(Context context) {
-		if (logFile == null) {
-			readyPref(context);
-			logFile = pref.getString(PREF_LOGFILE, null);
-		}
-		if (logFile == null) {
-			logFile = Environment.getExternalStorageDirectory().toString()
-					+ File.separator + LOGFILE;
-		}
-	}
+    protected static void setAlarm(Context context) {
+        readyAlarm(context);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                1000 * frequency, pending);
+    }
 
-	public static String getLogFileName(Context context) {
-		readyLog(context);
-		Log.d("pref", logFile);
-		return logFile;
-	}
+    protected static void cancelAlarm(Context context) {
+        readyAlarm(context);
+        alarm.cancel(pending);
+    }
 
-	public static int getFreeSize() {
-		StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
-		int sdAvailSize = stat.getAvailableBlocks() * stat.getBlockSize();
-		return sdAvailSize >> 20;
-	}
+    protected static void receiveWifi(Context context, boolean enable) {
+        context.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(context, WifiReceiver.class),
+                enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
 
-	public static boolean writeLog(Context context, String text) {
-		// skip empty log text
-		if ((text == null) || (text.length() == 0)) {
-			return false;
-		}
+    protected static void readyWifi(Context context) {
+        if (wifi == null) {
+            wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        }
+    }
 
-		readyLog(context);
-		try {
-			FileWriter log = new FileWriter(logFile, true);
-			log.write(String.valueOf(System.currentTimeMillis())
-					+ " "
-					+ new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z", Locale.US)
-							.format(new Date()) + "\t" + text + "\n");
-			log.close();
-			return true;
-		} catch (Exception e) {
-			Log.d("logerr", text);
-		}
+    protected static void readyPref(Context context) {
+        if (pref == null) {
+            pref = context.getSharedPreferences(PREFERENCES,
+                    Context.MODE_PRIVATE);
+        }
+    }
 
-		return false;
-	}
+    protected static boolean setPref(Context context, String name, String value) {
+        readyPref(context);
+        return pref.edit().putString(name, value).commit();
+    }
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		String action = intent.getAction();
+    protected static void readyLog(Context context) {
+        if (logFile == null) {
+            readyPref(context);
+            logFile = pref.getString(PREF_LOGFILE, null);
+        }
+        if (logFile == null) {
+            logFile = Environment.getExternalStorageDirectory().toString()
+                    + File.separator + LOGFILE;
+        }
+    }
 
-		// Handle wifi scan result
-		if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
-			readyWifi(context);
-			List<ScanResult> results = wifi.getScanResults();
-			for (ScanResult R : results) {
-				writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "
-						+ R.SSID);
-			}
-			context.sendBroadcast(new Intent(ACTION_UPDATE));
-			return;
-		}
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
 
-		// No action, it should be my alarm intent
-		doScan(context);
-	}
+        // Handle wifi scan result
+        if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
+            readyWifi(context);
+            List<ScanResult> results = wifi.getScanResults();
+            for (ScanResult R : results) {
+                writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "
+                        + R.SSID);
+            }
+            context.sendBroadcast(new Intent(ACTION_UPDATE));
+            return;
+        }
+
+        // No action, it should be my alarm intent
+        doScan(context);
+    }
 }

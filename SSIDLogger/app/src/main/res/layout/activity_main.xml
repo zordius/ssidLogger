@@ -49,7 +49,7 @@
             android:textOn="active" />
 
         <ToggleButton
-            android:id="@+id/fequencySwitch"
+            android:id="@+id/frequencySwitch"
             style="@style/defaultMarginLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
