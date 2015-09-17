@@ -33,7 +33,7 @@ public class WifiReceiver extends BroadcastReceiver {
 	public static SharedPreferences pref = null;
 	public static String logFile = null;
     public static boolean activeScan = false;
-    public static int fequency = 15;
+    public static int fequency = 60;
 
 	public static void toggleScan(Context context, boolean enable) {
 		if (enable) {
