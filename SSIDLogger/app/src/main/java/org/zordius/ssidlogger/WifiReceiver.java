@@ -37,6 +37,20 @@ public class WifiReceiver extends BroadcastReceiver {
     public static boolean activeScan = false;
     public static int frequency = 60;
 
+    public static void init(Context context) {
+        pref = context.getSharedPreferences(PREFERENCES,
+                Context.MODE_PRIVATE);
+        wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        logFile = pref.getString(PREF_LOGFILE, null);
+        activeScan = pref.getBoolean(PREF_ACTIVE, false);
+        frequency = pref.getInt(PREF_SCANINTERVAL, 60);
+
+        if (logFile == null) {
+            logFile = Environment.getExternalStorageDirectory().toString()
+                    + File.separator + LOGFILE;
+        }
+    }
+
     public static boolean isEnabled(Context context) {
         return context.getPackageManager().getComponentEnabledSetting(
                 new ComponentName(context, WifiReceiver.class)) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
@@ -59,7 +73,6 @@ public class WifiReceiver extends BroadcastReceiver {
     public static void doScan(Context context) {
         writeLog(context, "SCAN");
         receiveWifi(context, true);
-        readyWifi(context);
         if (wifi.isWifiEnabled()) {
             wifi.startScan();
         } else {
@@ -69,27 +82,21 @@ public class WifiReceiver extends BroadcastReceiver {
 
     public static void toggleActive(Context context) {
         activeScan = !activeScan;
-        setPref(context, PREF_ACTIVE, activeScan ? "Y" : "");
+        pref.edit().putBoolean(PREF_ACTIVE, activeScan).commit();
     }
 
     public static void toggleLongScan(Context context) {
         frequency = 90 - frequency;
-        setPref(context, PREF_SCANINTERVAL, frequency + "");
+        pref.edit().putInt(PREF_ACTIVE, frequency).commit();
     }
 
     public static boolean setLogFile(Context context, String name) {
         logFile = name;
         if (writeLog(context, "SETFILE")) {
-            return setPref(context, PREF_LOGFILE, name);
+            return pref.edit().putString(PREF_LOGFILE, name).commit();
         }
         logFile = null;
         return false;
-    }
-
-    public static String getLogFileName(Context context) {
-        readyLog(context);
-        Log.d("pref", logFile);
-        return logFile;
     }
 
     public static int getFreeSize() {
@@ -104,7 +111,6 @@ public class WifiReceiver extends BroadcastReceiver {
             return false;
         }
 
-        readyLog(context);
         try {
             FileWriter log = new FileWriter(logFile, true);
             log.write(String.valueOf(System.currentTimeMillis())
@@ -148,42 +154,12 @@ public class WifiReceiver extends BroadcastReceiver {
                 PackageManager.DONT_KILL_APP);
     }
 
-    protected static void readyWifi(Context context) {
-        if (wifi == null) {
-            wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        }
-    }
-
-    protected static void readyPref(Context context) {
-        if (pref == null) {
-            pref = context.getSharedPreferences(PREFERENCES,
-                    Context.MODE_PRIVATE);
-        }
-    }
-
-    protected static boolean setPref(Context context, String name, String value) {
-        readyPref(context);
-        return pref.edit().putString(name, value).commit();
-    }
-
-    protected static void readyLog(Context context) {
-        if (logFile == null) {
-            readyPref(context);
-            logFile = pref.getString(PREF_LOGFILE, null);
-        }
-        if (logFile == null) {
-            logFile = Environment.getExternalStorageDirectory().toString()
-                    + File.separator + LOGFILE;
-        }
-    }
-
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
 
         // Handle wifi scan result
         if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
-            readyWifi(context);
             List<ScanResult> results = wifi.getScanResults();
             for (ScanResult R : results) {
                 writeLog(context, "WIFI " + R.BSSID + " " + R.level + " "

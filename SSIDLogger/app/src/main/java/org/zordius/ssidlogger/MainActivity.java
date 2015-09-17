@@ -55,13 +55,17 @@ public class MainActivity extends Activity {
     }
 
     public void syncStatus() {
+        WifiReceiver.init(this);
+
         ((ToggleButton) findViewById(R.id.logSwitch)).setChecked(WifiReceiver
                 .isEnabled(this));
         ((ToggleButton) findViewById(R.id.activeSwitch)).setChecked(WifiReceiver
                 .activeScan);
+        ((ToggleButton) findViewById(R.id.frequencySwitch)).setChecked(WifiReceiver
+                .frequency == 60);
 
         ((EditText) findViewById(R.id.editFilename))
-                .setText(WifiReceiver.getLogFileName(this),
+                .setText(WifiReceiver.logFile,
                         TextView.BufferType.EDITABLE);
 
         ((TextView) findViewById(R.id.textLFree))
