@@ -9,7 +9,7 @@ android:
     - android-19
 sudo: false
 script:
-  - cd SSIDLogger;./gradlew assemble
+  - cd SSIDLogger;./gradlew assemble --stacktrace
   - ls -al SSIDLogger/build
   - ls -al SSIDLogger/build/apk
   - ls -al SSIDLogger/app/build/outputs/apk

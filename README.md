@@ -49,6 +49,8 @@ We provides a perl script to generate gpx from the log file:
 cat ssidLogger.log | ./log2gpx.pl > ourput.gpx
 ```
 
+`log2gpx.pl` will store lat/lon cache at the file `/tmp/bssidCache` to speed up the API look up time on duplicate bssid. If you want to clear up the cache, just delete this file.
+
 Other Reference
 ===============
 
