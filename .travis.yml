@@ -1,8 +1,5 @@
 language: android
 jdk: oraclejdk7
-env:
-  matrix:
-    - ANDROID_TARGET=android-19
 android:
   components:
     - platform-tools
@@ -16,4 +13,8 @@ script:
   - cd SSIDLogger
   - ./gradlew assemble --stacktrace
   - ../travis.sh
-secure: "o7IuyARl9WoVJGeQMAohw47aP9kiZnn5kdjaRIdR/b3nllySB8ugfLrdZpP41v3+TDGz03pEWALYAunFVEQvycvAjp2hQWkwu/Mbk51ptAgowEG+9KbrtldeK4471TtlhNRwZ7m9qkBk1kdG7qO7991MCIP7B51Bo/5QqSll5X0="
+env:
+  matrix:
+    - ANDROID_TARGET=android-19
+  global:
+    secure: "o7IuyARl9WoVJGeQMAohw47aP9kiZnn5kdjaRIdR/b3nllySB8ugfLrdZpP41v3+TDGz03pEWALYAunFVEQvycvAjp2hQWkwu/Mbk51ptAgowEG+9KbrtldeK4471TtlhNRwZ7m9qkBk1kdG7qO7991MCIP7B51Bo/5QqSll5X0="
