@@ -15,4 +15,4 @@ sudo: false
 script:
   - cd SSIDLogger
   - ./gradlew assemble --stacktrace
-  - ./travis.sh
+  - ../travis.sh
