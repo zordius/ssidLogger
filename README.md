@@ -29,7 +29,7 @@ ssidLogger
 HOW TO USE
 ==========
 
-First of all, you should be able to build an Android project and install this on your Android device. Or, you can <a href="http://zordius.github.io/ssidLogger/app-debug.apk">Debug version .apk</a> here.
+First of all, you should be able to build an Android project and install this on your Android device. Or, you can <a href="http://zordius.github.io/ssidLogger/app-debug.apk">download Debug version .apk</a>.
 
 <img src="screenshot.png" />
 
