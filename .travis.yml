@@ -7,7 +7,6 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-19.1.0
     - android-19
     - extra-google-m2repository
     - extra-android-m2repository
