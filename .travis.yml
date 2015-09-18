@@ -13,7 +13,6 @@ android:
     - extra-android-m2repository
 sudo: false
 script:
-  - cd SSIDLogger;./gradlew assemble --stacktrace
-  - ls -al build
-  - ls -al build/apk
-  - ls -al app/build/outputs/apk
+  - cd SSIDLogger
+  - ./gradlew assemble --stacktrace
+  - ./travis.sh
